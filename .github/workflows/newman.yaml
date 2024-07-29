@@ -1,0 +1,43 @@
+name: newman
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: Prod
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Install Newman HTML reporter
+        run: npm install -g newman-reporter-htmlextra
+
+      - name: Run newman tests
+        run: newman run pmtest/pmtest.json -r htmlextra --reporter-htmlextra-export pmtest.html
+
+      - name: Commit test result
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add . 
+          git commit -m "Save the result of the Newman test"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print test results
+        run: echo "Tests have been successfully run."
