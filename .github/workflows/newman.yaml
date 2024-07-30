@@ -39,5 +39,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Archive test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: newman-test-report
+          path: public/pmtest.html
+
       - name: Print test results
         run: echo "Tests have been successfully run."

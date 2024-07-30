@@ -37,3 +37,7 @@ G
 deployment/taskdef.json,3/a/3acb92d0acabbd189ccfa7e588363f2207785b0b
 >
 .gitattributes,2/4/24139dae656713ba861751fb2c2ac38839349a7a
+[
++.github/workflows/newman-release-notes.yaml,8/7/879bc9b57aac8f26d5927c50ed9535a59b81e3a9
+N
+pmtest/generateReleaseNotes.js,d/2/d2bd1effc6643c93b5078dfd8ef5b8619b8a877e
