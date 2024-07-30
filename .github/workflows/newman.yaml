@@ -3,11 +3,10 @@ name: newman
 on: [ push ]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     environment:
       name: Prod
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
