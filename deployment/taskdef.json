@@ -39,7 +39,7 @@
   ],
   "runtimePlatform": {
     "cpuArchitecture": "ARM64",
-    "osFamily": "LINUX"
+    "operatingSystemFamily": "LINUX"
   },
   "cpu": "1024",
   "memory": "3072"
