@@ -37,6 +37,10 @@
   "requiresCompatibilities": [
     "FARGATE"
   ],
+  "runtimePlatform": {
+    "cpuArchitecture": "ARM64",
+    "osFamily": "LINUX"
+  },
   "cpu": "1024",
   "memory": "3072"
 }
