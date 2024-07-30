@@ -1,6 +1,7 @@
 {
   "family": "tee1",
   "taskRoleArn": "arn:aws:iam::716591628268:role/ecsTaskExecutionRole",
+  "executionRoleArn":"arn:aws:iam::716591628268:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
