@@ -1,11 +1,11 @@
 {
   "family": "tee1",
-  "taskRoleArn": "arn:aws:ecs:us-east-1:716591628268:task-definition/tee1:1",
+  "taskRoleArn": "arn:aws:iam::716591628268:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
       "name": "mypm",
-      "image": "716591628268.dkr.ecr.us-east-1.amazonaws.com/mypm",
+      "image": "716591628268.dkr.ecr.us-east-1.amazonaws.com/mypm:latest",
       "cpu": 0,
       "portMappings": [
         {
