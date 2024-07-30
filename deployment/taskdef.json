@@ -24,6 +24,13 @@
         }
       ],
       "essential": true,
+      "entryPoint": [
+        "sh",
+        "-c"
+      ],
+      "command": [
+        "/start.sh"
+      ]
     }
   ],
   "requiresCompatibilities": [
@@ -32,4 +39,3 @@
   "cpu": "1024",
   "memory": "3072"
 }
-
