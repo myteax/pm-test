@@ -1,5 +1,5 @@
 # Define the base image with Node.js for ARM64 architecture
-FROM arm64v8/node:18-alpine
+FROM arm64v8/node:17-alpine
 
 # Create app directory in Docker
 WORKDIR /usr/src/app
