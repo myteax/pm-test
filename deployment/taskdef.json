@@ -1,5 +1,7 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:716591628268:task-definition/tee1:1",
+  "family": "tee1",
+  "taskRoleArn": "arn:aws:ecs:us-east-1:716591628268:task-definition/tee1:1",
+  "networkMode": "awsvpc",
   "containerDefinitions": [
     {
       "name": "mypm",
@@ -22,71 +24,12 @@
         }
       ],
       "essential": true,
-      "environment": [],
-      "environmentFiles": [],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "ulimits": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/tee1",
-          "awslogs-create-group": "true",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
-      },
-      "systemControls": []
     }
-  ],
-  "family": "tee1",
-  "executionRoleArn": "arn:aws:iam::716591628268:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "revision": 1,
-  "volumes": [],
-  "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2",
-    "FARGATE"
   ],
   "requiresCompatibilities": [
     "FARGATE"
   ],
   "cpu": "1024",
-  "memory": "3072",
-  "runtimePlatform": {
-    "cpuArchitecture": "ARM64",
-    "operatingSystemFamily": "LINUX"
-  },
-  "registeredAt": "2024-07-28T06:25:45.715Z",
-  "registeredBy": "arn:aws:iam::716591628268:root",
-  "tags": []
+  "memory": "3072"
 }
+
