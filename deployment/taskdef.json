@@ -8,6 +8,14 @@
       "name": "mypm",
       "image": "716591628268.dkr.ecr.us-east-1.amazonaws.com/mypm:stage",
       "cpu": 0,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/myLogGroupName",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
       "portMappings": [
         {
           "name": "mypm-80-tcp",
