@@ -1,5 +1,6 @@
 name: ecrpush
 
+
 on:
   workflow_run:
     workflows: [ "newman" ]
@@ -8,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment:
       name: Prod
 
