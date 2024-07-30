@@ -6,7 +6,7 @@
   "containerDefinitions": [
     {
       "name": "mypm",
-      "image": "716591628268.dkr.ecr.us-east-1.amazonaws.com/mypm:latest",
+      "image": "716591628268.dkr.ecr.us-east-1.amazonaws.com/mypm:stage",
       "cpu": 0,
       "portMappings": [
         {

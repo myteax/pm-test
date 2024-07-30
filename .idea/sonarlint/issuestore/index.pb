@@ -35,3 +35,5 @@ O
 .github/workflows/ecrbuild.yaml,1/a/1af3666990c83a2a94eb3901da87a1b40902f3c4
 G
 deployment/taskdef.json,3/a/3acb92d0acabbd189ccfa7e588363f2207785b0b
+>
+.gitattributes,2/4/24139dae656713ba861751fb2c2ac38839349a7a

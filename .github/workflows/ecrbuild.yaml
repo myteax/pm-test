@@ -35,10 +35,10 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and push it to ECR
-          echo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker build . -t $ECR_REPOSITORY:$IMAGE_TAG 
-          docker push $ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REPOSITORY:$IMAGE_TAG"
+          echo $ECR_REGISTRY/$ECR_REPOSITORY:stage
+          docker build . -t $ECR_REPOSITORY:stage 
+          docker push $ECR_REPOSITORY:stage
+          echo "::set-output name=image::$ECR_REPOSITORY:stage"
 
       - name: Register new Task Definition
         id: register-task-def
@@ -46,7 +46,7 @@ jobs:
           # Replace the placeholder <TASK_DEFINITION> with your task definition file in JSON format.
           # Replace the placeholder <CONTAINER_NAME> with the name of the container in your task definition
           # And change <FAMILY_NAME> with the family name of your task definition
-          TASK_DEFINITION=$(sed -e "s/<IMAGE_NAME>/$ECR_REPOSITORY:$IMAGE_TAG/" deployment/taskdef.json)
+          TASK_DEFINITION=$(sed -e "s/<IMAGE_NAME>/$ECR_REPOSITORY:stage/" deployment/taskdef.json)
           echo "$TASK_DEFINITION" > new-task-def.json
           aws ecs register-task-definition --cli-input-json file://new-task-def.json
           # Print the ARN of the newly registered task definition
