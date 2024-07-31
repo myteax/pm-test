@@ -35,25 +35,11 @@ jobs:
         run: newman run pmtest/pmtest2.json -r cli
         continue-on-error: true
 
-      - name: Commit test result
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add . 
-          git commit -m "Save the result of the Newman test"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Archive test report
         uses: actions/upload-artifact@v2
         with:
           name: newman-test-report
           path: public/pmtest.html
-
-
-
-
 
 
       - name: Print test results
