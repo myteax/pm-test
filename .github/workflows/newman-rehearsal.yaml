@@ -26,7 +26,7 @@ jobs:
         run: npm install -g newman-reporter-htmlextra
 
       - name: Start the API
-        run: npm run dev
+        run: npm start
 
       - name: Run newman tests
         run: newman run pmtest/pmtest2.json -r htmlextra --reporter-htmlextra-export public/pmtest.html
