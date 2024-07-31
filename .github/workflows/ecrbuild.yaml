@@ -3,7 +3,7 @@ name: ecrpush
 
 on:
   workflow_run:
-    workflows: [ "newman" ]
+    workflows: [ "Release" ]
     types:
       - completed
 
