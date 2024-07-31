@@ -79,6 +79,19 @@ jobs:
           asset_name: pmtest.html
           asset_content_type: text/html
 
+      - name: Create Release2
+        id: create-release2
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release-${{ steps.vars.outputs.version }}
+          release_name: Release ${{ github.ref }}
+          body: ''
+          draft: false
+          prerelease: false
+
+
       - name: Upload Release Asset2
         id: upload-release-asset2
         uses: actions/upload-release-asset@v1
