@@ -17,7 +17,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: newman-test-report
-          path: public/pmtest.html
+          path: public/
 
       - name: Create Release
         id: create-release
