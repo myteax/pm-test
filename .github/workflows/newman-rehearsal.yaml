@@ -1,0 +1,115 @@
+name: newman
+
+on: [ push ]
+
+jobs:
+  tests:
+    runs-on: [self-hosted,buzz]
+    environment:
+      name: Prod
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Install Newman HTML reporter
+        run: npm install -g newman-reporter-htmlextra
+
+      - name: Start the API
+        run: npm run dev
+
+      - name: Run newman tests
+        run: newman run pmtest/pmtest2.json -r htmlextra --reporter-htmlextra-export public/pmtest.html
+        continue-on-error: true
+
+      - name: Commit test result
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add . 
+          git commit -m "Save the result of the Newman test"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archive test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: newman-test-report
+          path: public/pmtest.html
+
+      - name: Download test report artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: newman-test-report
+          path: public/
+
+      - name: Setup environment
+        id: vars
+        run: |
+          echo "::set-output name=version::$(date -u +'%Y%m%d%H%M%S')"
+
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: test-release-${{ steps.vars.outputs.version }}
+          release_name: Release ${{ github.ref }}
+          body: ''
+          draft: false
+          prerelease: false
+      #
+      #      - name: Upload Release Asset
+      #        id: upload-release-asset
+      #        uses: actions/upload-release-asset@v1
+      #        env:
+      #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #        with:
+      #          upload_url: ${{ steps.create-release.outputs.upload_url }}
+      #          asset_path: ./public/pmtest.html
+      #          asset_name: pmtest.html
+      #          asset_content_type: text/html
+
+      - name: Setup environment
+        id: vars2
+        run: |
+          echo "::set-output name=version::$(date -u +'%Y%m%d%H%M%S')"
+
+      - name: Create Release2
+        id: create-release2
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release-${{ steps.vars2.outputs.version }}
+          release_name: Release ${{ github.ref }}
+          body: ''
+          draft: false
+          prerelease: false
+
+
+      - name: Upload Release Asset2
+        id: upload-release-asset2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./public/pmtest.html
+          asset_name: pmtest.html
+          asset_content_type: text/html
+
+      - name: Print test results
+        run: echo "Tests have been successfully run."
