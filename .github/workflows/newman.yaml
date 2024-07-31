@@ -79,6 +79,11 @@ jobs:
           asset_name: pmtest.html
           asset_content_type: text/html
 
+      - name: Setup environment
+        id: vars
+        run: |
+          echo "::set-output name=version::$(date -u +'%Y%m%d%H%M%S')"
+
       - name: Create Release2
         id: create-release2
         uses: actions/create-release@v1
