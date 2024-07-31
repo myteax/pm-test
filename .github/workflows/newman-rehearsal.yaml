@@ -31,7 +31,8 @@ jobs:
           sleep 20
 
       - name: Run newman tests
-        run: newman run pmtest/pmtest2.json -r htmlextra --reporter-htmlextra-export public/pmtest.html
+#        run: newman run pmtest/pmtest2.json -r htmlextra --reporter-htmlextra-export public/pmtest.html
+        run: newman run pmtest/pmtest2.json -r cli
         continue-on-error: true
 
       - name: Commit test result
